@@ -1,0 +1,29 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#pomodoroContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid black;
+  border-radius: 100px;
+  width: 200px;
+  height: 200px;
+}
+
+#timeContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+#startButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+}
