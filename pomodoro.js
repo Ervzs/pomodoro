@@ -5,6 +5,8 @@ let pomodoroTime;
 let seconds;
 const pomodoroAudio = new Audio("pomodoro-time.wav");
 const breakAudio = new Audio("break-time.wav");
+const longBreakAudio = new Audio("short-bell.wav");
+let pomodoroCounter = 0;
 
 function startPomodoro(){
     pomodoroAudio.play();
@@ -14,8 +16,15 @@ function startPomodoro(){
         seconds--
 
         if(pomodoroTime < 0){
-            clearInterval(pomodoroTimer);
-            startBreak();
+            pomodoroCounter++
+            if(pomodoroCounter === 4){
+                longBreak();
+            }
+            else{
+                clearInterval(pomodoroTimer);
+                startBreak();
+            }
+            
         } else if (seconds < 0){
             pomodoroTime--;
             seconds = 60
@@ -31,7 +40,26 @@ function startBreak(){
     pomodoroTime = 5;
     seconds = 0;
     let breakTimer = setInterval(() => {
-        
+        seconds--
+
+        if(pomodoroTime < 0){
+            clearInterval(breakTimer);
+            startPomodoro();
+        } else if (seconds < 0){
+            pomodoroTime--;
+            seconds = 60
+        }
+
+        minutesdisplay.innerText = pomodoroTime;
+        secondsDisplay.innerText = seconds;
+    }, 1000);
+}
+
+function longBreak(){
+    longBreakAudio.play();
+    pomodoroTime = 30;
+    seconds = 0;
+    let breakTimer = setInterval(() => {
         seconds--
 
         if(pomodoroTime < 0){
