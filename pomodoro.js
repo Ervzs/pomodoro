@@ -9,6 +9,7 @@ const longBreakAudio = new Audio("short-bell.wav");
 let pomodoroCounter = 0;
 
 function startPomodoro(){
+    console.log(pomodoroCounter);
     pomodoroAudio.play();
     pomodoroTime = 25;
     let seconds = 0;
@@ -63,6 +64,7 @@ function longBreak(){
         seconds--
 
         if(pomodoroTime < 0){
+            pomodoroCounter = 0;
             clearInterval(breakTimer);
             startPomodoro();
         } else if (seconds < 0){
